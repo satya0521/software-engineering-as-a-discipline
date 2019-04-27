@@ -1,0 +1,16 @@
+version: "2"
+services:
+  mysql_host:
+    image: mysql:8
+    ports:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  test_host:
+    image: mysql:8 # we only need a host with mysqlbinlog utility
+    ports:
+      - 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    links:
+      - mysql_host

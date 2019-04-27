@@ -43,4 +43,4 @@ docker-compose down
 
 ## MySQL Binary Log Requirements
 
-[SQL for checking database configuration against desired configuration](./mysql_binlog_requirements.sql)
+[SQL](./mysql_binlog_requirements.sql) for checking database configuration against desired configuration

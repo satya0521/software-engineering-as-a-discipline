@@ -44,7 +44,7 @@ SELECT
     END AS 'REQUIRED'
 FROM performance_schema.global_variables
 WHERE VARIABLE_NAME = 'innodb_version' OR
-	VARIABLE_NAME = 'server_id' OR
+    VARIABLE_NAME = 'server_id' OR
     VARIABLE_NAME = 'log_bin' OR
     VARIABLE_NAME = 'log_bin_basename' OR
     VARIABLE_NAME = 'binlog_format' OR

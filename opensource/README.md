@@ -1,6 +1,6 @@
 # Open Source
 
-## Open Source Contributions by Organization
+## Open Source Contributions by Organizations
 
 Source: [The State of Octoverse, 2018](https://octoverse.github.com/projects)
 

@@ -28,6 +28,12 @@ Java:
 
 ## Quality Gates
 
+### Build Tool Integration
+
+Code quality tools can and are integrated into build tools.
+Builds can be set to fail if the code doesn't pass the quality checks.
+Code quality tools can be integrated with VCS and CI; these integrations should be secondary.
+
 ### Git Commit Hooks
 
 ### CI Build failure

@@ -10,6 +10,9 @@ Contribution:
 Core of enterprise application development:
 
 - Programming Language
+- Web Frameworks
+  - Configuration Management
+  - Secrets Management
 - Databases
 
 Halo of enterprise application development:

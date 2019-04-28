@@ -18,8 +18,8 @@ Core of enterprise application development:
 Halo of enterprise application development:
 
 - [Legal](./legal)
-- Version Control Systems
-- Continuous Integration
+- [Version Control Systems](./version-control-systems)
+- [Continuous Integration](./continuous-delivery)
 - Build Tool
 - [Code Quality](./code-quality)
 - [Security](./security)

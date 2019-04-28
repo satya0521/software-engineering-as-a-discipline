@@ -1,5 +1,15 @@
 # Legal
 
+## Philosophy
+
+There are three kinds of software:
+
+- Free Software, free as in free speech and not as free beer
+- Open Source
+- Proprietary
+
+Must read: [Free Software, Free Society: Selected Essays of Richard M. Stallman](https://www.gnu.org/philosophy/fsfs/rms-essays.pdf)
+
 ## Choose a license for project
 
 Identify an appropriate license for your project and add it to the repo.
@@ -44,7 +54,7 @@ public static void main(String[] args) {
 
 Libraies that can be used to automate this task:
 
-- Maven: https://github.com/mojohaus/license-maven-plugin
+- Maven: <https://github.com/mojohaus/license-maven-plugin>
 
 ## License Reporting of third-party code
 

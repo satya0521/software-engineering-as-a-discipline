@@ -1,0 +1,154 @@
+---
+agent: any
+agent: none
+agent:
+  label: my-defined-label
+agent:
+  docker: openjdk:8-jre
+agent:
+  dockerfile: true
+agent:
+  node:
+    label: my-defined-label
+    customWorkspace: /some/other/path
+agent:
+  docker:
+    label: my-defined-label
+    customWorkspace: /some/other/path
+    image: maven:3-alpine
+    args: -v /tmp:/tmp
+agent:
+  dockerfile:
+    label: my-defined-label
+    customWorkspace: /some/other/path
+    dir: someSubDir
+    filename: Dockerfile-build
+    additionalBuildArgs: --build-arg foo=bar
+    args: -v /tmp:/tmp
+tools:
+  jdk: jdk-8u45
+  maven: apache-maven-3.0.1
+environment:
+  PATH: $JAVA_HOME/bin:$PATH
+  AWS_ACCESS_KEY_ID: credentials('AWS_ACCESS_KEY_ID')
+  AWS_SECRET_ACCESS_KEY: credentials('AWS_SECRET_ACCESS_KEY')
+  SAUCE_ACCESS: credentials('sauce-lab-dev') # SAUCE_ACCESS, SAUCE_ACCESS_USR, SAUCE_ACCESS_PSW
+triggers:
+  pollSCM: H/5 * * * *
+  cron: H/5 * * * *
+parameters:
+- paramType: boolean
+  name: DEBUG_BUILD
+  defaultValue: true
+  description: Is this a debug build?
+- paramType: string
+  name: DEPLOY_ENV
+  defaultValue: staging
+  description: What is the deployment environment
+options:
+- "buildDiscarder(logRotator(numToKeepStr: '1'))"
+- disableConcurrentBuilds()
+- overrideIndexTriggers(true)
+- skipStagesAfterUnstable()
+- skipDefaultCheckout()
+- timestamps()
+- retry(3)
+- "timeout(time: 1, unit: 'HOURS')"
+stages:
+- label: Non-Parallel Stage
+  agent:
+    docker:
+      label: my-defined-label
+      customWorkspace: /some/other/path
+      image: maven:3-alpine
+      args: -v /tmp:/tmp
+      reuseNode: true # default is false; can be used with dockerfile agent also
+  tools:
+    jdk: jdk-8u45
+  environment:
+    PATH: $JAVA_HOME/bin:$PATH
+  when: # TODO: Allow relational operators allOf, anyOf, not
+    anyOf:
+      branch: production
+      expression: "BRANCH_NAME ==~ /(production|staging)/"
+    environment:
+      name: DEPLOY_TO
+      value: production
+    expression: "BRANCH_NAME ==~ /(production|staging)/"
+  steps:
+  - sh: mvn clean package
+  - sh: date
+  post:
+    changed:
+    - sh: hostname
+    - sh: date
+    success:
+    - sh: hostname
+    - sh: date
+- label: Parallel Stage
+  # agent and tools are not allowed when parallel is being used
+  failFast: true
+  environment:
+    PATH: $JAVA_HOME/bin:$PATH
+  when:
+    branch: production
+    environment:
+      name: DEPLOY_TO
+      value: production
+    expression: "BRANCH_NAME ==~ /(production|staging)/"
+  parallel:
+  - label: Nested Stage 1
+  - label: Nested Stage 2
+  post:
+    changed:
+    - sh: hostname
+    - sh: date
+    success:
+    - sh: hostname
+    - sh: date
+post:
+  always: # always means, well, always run.
+  - sh: hostname
+  - sh: date
+  - emailext:
+      body: Build Complete
+      subject: |
+        1 Build results can be found in Jenkins
+        2 Build results can be found in Jenkins
+        3 Build results can be found in Jenkins
+      to: dev@dexample.com
+  changed: # changed means when the build status is different than the previous build's status.
+  - sh: hostname
+  - sh: date
+  - emailext:
+      body: Build Complete
+      subject: Build results can be found in Jenkins
+      to: dev@example.com
+  success: # success, failure, unstable all run if the current build status is successful, failed, or unstable, respectively
+  - sh: hostname
+  - sh: date
+  - emailext:
+      body: Build Complete
+      subject: Build results can be found in Jenkins
+      to: dev@example.com
+  unstable: # success, failure, unstable all run if the current build status is successful, failed, or unstable, respectively
+  - sh: hostname
+  - sh: date
+  - emailext:
+      body: Build Complete
+      subject: Build results can be found in Jenkins
+      to: dev@example.com
+  failure: # success, failure, unstable all run if the current build status is successful, failed, or unstable, respectively
+  - sh: hostname
+  - sh: date
+  - emailext:
+      body: Build Complete
+      subject: Build results can be found in Jenkins
+      to: dev@example.com
+  aborted:
+  - sh: hostname
+  - sh: date
+  - emailext:
+      body: Build Complete
+      subject: Build results can be found in Jenkins
+      to: dev@example.com

@@ -10,6 +10,7 @@ Contribution:
 Core of enterprise application development:
 
 - Programming Language
+- Build Tool
 - Web Frameworks
   - Configuration Management
   - Secrets Management
@@ -20,7 +21,6 @@ Halo of enterprise application development:
 - [Legal](./legal)
 - [Version Control Systems](./version-control-systems)
 - [Continuous Integration](./continuous-delivery)
-- Build Tool
 - [Code Quality](./code-quality)
 - [Security](./security)
 - Infrastructure

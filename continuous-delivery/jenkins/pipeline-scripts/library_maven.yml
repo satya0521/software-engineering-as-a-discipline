@@ -1,0 +1,24 @@
+---
+agent: any
+
+environment:
+  JFROG_ART_ACCESS: credentials('jfrog-art-access')
+
+triggers:
+  pollSCM: H/5 * * * *
+
+stages:
+- label: Build and Upload
+  agent:
+    docker: maven:3
+  when:
+    branch: master
+  steps:
+  - sh: mvn -f sample-library/pom.xml --batch-mode -V -U -e clean deploy -Dsurefire.useFile=false -Dusername=${JFROG_ART_ACCESS_USR} -Dpassword=${JFROG_ART_ACCESS_PSW} -DbuildName='${ARTIFACTORY_PROJECT_NAME}' -DbuildNumber=${BUILD_NUMBER} -DbuildUrl='${BUILD_URL}'
+
+post:
+  always:
+  - emailext:
+      body: "Build URL: ${BUILD_URL}"
+      to: dev@example.com
+      subject: "Build Notification :: Sample Library :: ${BRANCH_NAME} :: ${BUILD_RESULT}"

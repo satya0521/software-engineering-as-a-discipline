@@ -1,0 +1,42 @@
+---
+agent: any
+
+environment:
+  JFROG_ART_API: credentials('jfrog-art-api')
+
+triggers:
+  pollSCM: H/5 * * * *
+
+stages:
+- label: Clean Workspace
+  agent:
+    docker:
+      image: node:6
+      reuseNode: true
+  steps:
+  - sh: 'rm my-app*.zip || :'
+  - sh: 'rm node_modules -rf'
+- label: Build Artifact
+  agent:
+    docker:
+      image: node:6
+      reuseNode: true
+  steps:
+  - sh: npm prune
+  - sh: npm install
+  - sh: npm run lint
+  - sh: npm run clean
+  - sh: npm run build
+  - sh: echo 'DEPLOYED GIT BRANCH NAME ==>' ${BRANCH_NAME} '||' 'DEPLOYED BUILD  ID ==>' ${BUILD_NUMBER} > static/version.html
+  - sh: zip -r my-app-${BUILD_NUMBER}.zip ./ >/dev/null 2>&1
+- label: Upload to Artifactory
+  steps:
+  # use Bitbucket ProjectKey and RepoId for Artifactory repository to have one-to-one mapping
+  - sh: "curl -H 'X-JFrog-Art-Api: ${JFROG_ART_API}' -T my-app-${BUILD_NUMBER}.zip \"http://artifactory.example.com/project/repo/branch/my-app-${BUILD_NUMBER}.zip\""
+
+post:
+  always:
+  - emailext:
+      body: "Build URL: ${BUILD_URL}"
+      to: dev@example.com
+      subject: "Build Notification :: My App :: ${BRANCH_NAME} :: ${BUILD_RESULT}"

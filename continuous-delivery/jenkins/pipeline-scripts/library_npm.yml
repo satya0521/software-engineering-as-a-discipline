@@ -1,0 +1,28 @@
+---
+agent: any
+
+environment:
+  NODE_VERSION: node:6
+  ARTIFACTORY_ROOT: http://artifactory.example.com/api/npm
+  ARTIFACTORY_REPO: npm-virtual
+  JFROG_ART_NPM_ACCESS: credentials('jfrog-art-npm-access')
+
+triggers:
+  pollSCM: H/5 * * * *
+
+stages:
+- label: Build and Upload
+  agent:
+    docker: NODE_VERSION
+  when:
+    branch: master
+  steps:
+  - sh: curl -u${JFROG_ART_NPM_ACCESS_USR}:{JFROG_ART_NPM_ACCESS_PSW} ${ARTIFACTORY_ROOT}/auth >> .npmrc
+  - sh: npm publish --registry ${ARTIFACTORY_ROOT}/${ARTIFACTORY_REPO}
+
+post:
+  always:
+  - emailext:
+      to: dev@example.com
+      subject: "Build Notification :: ${JOB_NAME} :: ${BRANCH_NAME} :: ${BUILD_RESULT}"
+      body: "Build URL: ${BUILD_URL}"

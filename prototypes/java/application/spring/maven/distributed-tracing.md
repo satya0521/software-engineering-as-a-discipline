@@ -66,11 +66,27 @@ By default it sends them to a Zipkin collector service on localhost (port 9411).
 Configure the location of the service using `spring.zipkin.baseUrl`.
 
 ```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth</artifactId>
+            <version>${spring-cloud-sleuth.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 <dependencies>
     <dependency>
         <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        <artifactId>spring-cloud-starter-zipkin</artifactId>
     </dependency>
+    <!-- enable the follow if you want to use RabbitMQ or Kafka instead of HTTP -->
+    <!-- <dependency>
+        <groupId>org.springframework.amqp</groupId>
+        <artifactId>spring-rabbit</artifactId>
+    </dependency> -->
 </dependencies>
 ```
 
@@ -78,6 +94,7 @@ Configure the location of the service using `spring.zipkin.baseUrl`.
 spring.application.name=my-web-application
 spring.sleuth.sampler.probability=0.1 # if zipkin is used
 spring.zipkin.baseUrl=http://localhost:9411
+spring.zipkin.sender.type=zipkin # kafka and RabbitMQ are other types
 ```
 
 ### Jaeger
@@ -91,8 +108,10 @@ It's compatible with [openzipkin/zipkin-api](https://github.com/openzipkin/zipki
 
 ## References
 
+- <https://content.pivotal.io/springone-platform-2017/distributed-tracing-latency-analysis-for-your-microservices-grzejszczak-krishna>
 - <https://spring.io/blog/2016/02/15/distributed-tracing-with-spring-cloud-sleuth-and-spring-cloud-zipkin>
 - <https://spring.io/projects/spring-cloud-sleuth>
 - <https://cloud.spring.io/spring-cloud-sleuth/single/spring-cloud-sleuth.html>
+- <https://github.com/openzipkin/sleuth-webmvc-example>
 - <https://github.com/spring-cloud/spring-cloud-sleuth/tree/master/spring-cloud-sleuth-samples>
 - <https://www.jaegertracing.io/docs/1.8/getting-started/#migrating-from-zipkin>

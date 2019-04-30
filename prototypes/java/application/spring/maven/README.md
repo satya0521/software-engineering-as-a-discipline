@@ -1,0 +1,21 @@
+# Developing a Spring Boot Application with Maven as Build Tool
+
+- License
+- Documentation
+- Code Quality
+  - Code Style
+  - Static Source Code Analysis
+  - Static Bytecode Analysis
+- Application Security
+  - Web Application Firewall
+  - SQL Injection
+  - XSS attack
+  - File scanner
+- Configuration Management
+  - Secret Management
+- Service to service authentication in Microservices
+- Encryption of Data-at-rest
+- Logging
+- [Distributed Tracing](./distributed-tracing.md)
+- Monitoring
+- Containerization

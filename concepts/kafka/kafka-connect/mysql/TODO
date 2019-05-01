@@ -1,0 +1,8 @@
+[ ] Deployment on a Hadoop Cluster
+[ ] Deployment on a Kubernetes Cluster
+[ ] Active-Active Topology
+[ ] Partitions
+[ ] Does new topics are created after a new table is added
+[ ] Database server events
+[ ] Database events
+[ ] Securing the Kakfa Connect endpoint

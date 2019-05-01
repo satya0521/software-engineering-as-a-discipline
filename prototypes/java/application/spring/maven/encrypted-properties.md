@@ -4,7 +4,7 @@
 
 How to protect encryption key:
 
-- Stand-alone deployment
+- Stand-alone deployment: use cat utility to pass from a file containing the base-64 encoded password
 - Kubernetes deployment: Kubernetes Secrets
 
 ## References

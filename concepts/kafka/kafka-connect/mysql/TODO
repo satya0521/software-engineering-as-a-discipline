@@ -6,3 +6,4 @@
 [ ] Database server events
 [ ] Database events
 [ ] Securing the Kakfa Connect endpoint
+[ ] Use a custom key for partitioning instead of primary key

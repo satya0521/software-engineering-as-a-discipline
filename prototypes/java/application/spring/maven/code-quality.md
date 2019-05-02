@@ -2,6 +2,8 @@
 
 - [Code Quality](#code-quality)
   - [Spotless](#spotless)
+  - [Checkstyle](#checkstyle)
+  - [PMD](#pmd)
   - [JaCoCo](#jacoco)
   - [SonarQube](#sonarqube)
 
@@ -101,6 +103,93 @@ pom.xml:
         </plugins>
     </build>
 </project>
+```
+
+## Checkstyle
+
+License: <https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)>
+
+Usage example: <https://maven.apache.org/plugins/maven-checkstyle-plugin/plugin-info.html>
+
+Goals:
+
+```sh
+# reporting
+mvn checkstyle:checkstyle
+mvn checkstyle:checkstyle-aggregate # for multi-module project
+# build
+checkstyle:check
+```
+
+pom.xml
+
+```xml
+<project>
+    <properties>
+        <!-- https://search.maven.org/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+        <checkstyle.version>3.0.0</checkstyle.version>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.version}</version>
+                <executions>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <configuration>
+                            <configLocation>google_checks.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <linkXRef>false</linkXRef>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <!-- select one of the following checkstyle-aggregate is for multi-module project -->
+                            <report>checkstyle</report>
+                            <report>checkstyle-aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
+```
+
+## PMD
+
+License: <https://tldrlegal.com/license/apache-license-2.0-(apache-2.0)>
+
+Usage example: <https://maven.apache.org/plugins/maven-pmd-plugin/usage.html>
+
+Goals:
+
+```sh
+## build
+mvn pmd:check # Fail the build if there were any PMD violations in the source code.
+mvn pmd:cpd-check # Fail the build if there were any CPD violations in the source code.
+## reporting
+mvn pmd:pmd # Creates a PMD report.
+mvn pmd:cpd # Creates a report for PMD's CPD tool.
 ```
 
 ## JaCoCo

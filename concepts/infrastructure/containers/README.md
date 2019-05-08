@@ -10,9 +10,8 @@
       - [Client-server](#client-server)
       - [P2P](#p2p)
   - [Container Runtime](#container-runtime)
-    - [Running a container](#running-a-container)
-    - [Access shell of a running container](#access-shell-of-a-running-container)
-    - [Configure container DNS](#configure-container-dns)
+    - [Container runtime landscape](#container-runtime-landscape)
+    - [Docker container management](#docker-container-management)
   - [References](#references)
 
 ## Open Container Initiative
@@ -98,6 +97,8 @@ Push an image: `docker image push {image}`
 
 ## Container Runtime
 
+### Container runtime landscape
+
 Docker and rkt are the two well known container engines.
 
 [containerd](https://github.com/containerd/containerd) is an industry-standard container runtime with an emphasis on simplicity, robustness and portability.
@@ -119,24 +120,22 @@ It is a lightweight alternative to using Docker, Moby or rkt as the runtime for 
 
 ![cri-o architecture](https://cri-o.io/assets/images/architecture.png)
 
-### Running a container
+### Docker container management
 
-`docker container run -it --rm --name {container_name} {image_name}`
+Running a container: `docker container run -it --rm --name {container_name} {image_name}`
 
-### Access shell of a running container
+Access shell of a running container: `docker container exec -it {container_name} /bin/sh`
 
-`docker container exec -it {container_name} /bin/sh`
-
-### Configure container DNS
+Configure container DNS:
 
 ```sh
 docker container run \
   -d \
-  --dns 10.x.x.x \
-  --dns 10.x.x.x \
+  --dns 10.3.x.x \
+  --dns 10.4.x.x \
   --dns-search example.com \
-  --name bash-container \
-  registry.example.com/alpine
+  --name {container_name} \
+  {image_name}
 ```
 
 ## References

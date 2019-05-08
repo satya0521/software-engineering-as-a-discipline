@@ -4,11 +4,11 @@
   - [Open Container Initiative](#open-container-initiative)
   - [Host Operating Systems (Minimalist)](#host-operating-systems-minimalist)
   - [Container Image](#container-image)
-    - [Base OS images](#base-os-images)
-    - [Docker image management](#docker-image-management)
     - [Container image registries](#container-image-registries)
       - [Client-server](#client-server)
       - [P2P](#p2p)
+    - [Base OS images](#base-os-images)
+    - [Docker image management](#docker-image-management)
   - [Container Runtime](#container-runtime)
     - [Container runtime landscape](#container-runtime-landscape)
     - [Docker container management](#docker-container-management)
@@ -39,6 +39,29 @@ List of minimalist operating systems:
 - [VMWare Photon](https://vmware.github.io/photon/)
 
 ## Container Image
+
+### Container image registries
+
+#### Client-server
+
+| Organization                      | Hosted                                | On-premises                                                                                   | Cloud                                                                            |
+| --------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Cloud Native Computing Foundation |                                       | [VMWare Harbor](https://goharbor.io/)                                                         |
+| Docker and SUSE                   |                                       | [Docker Registry](https://github.com/docker/distribution), [SUSE Portus](http://port.us.org/) |
+| Docker                            | [Docker Hub](https://hub.docker.com/) | [Docker Trusted Registry](https://docs.docker.com/ee/dtr/)                                    |
+| Red Hat                           | [Quay.io](https://quay.io/search)     | [Red Hat Quay](https://www.openshift.com/products/quay)                                       |
+| JFrog                             |                                       | [JFrog Artifactory](https://www.jfrog.com/confluence/display/RTF/Docker+Registry)             |
+| Sonatype                          |                                       | [Nexus Repository 3](https://help.sonatype.com/repomanager3/formats/docker-registry)          |
+| Amazon Web Services               |                                       |                                                                                               | [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/)           |
+| Microsoft Azure                   |                                       |                                                                                               | [Azure Registry](https://azure.microsoft.com/en-us/services/container-registry/) |
+| Google Cloud Platform             |                                       |                                                                                               | [Google Container Registry](https://cloud.google.com/container-registry/)        |
+
+#### P2P
+
+- Cloud Native Computing Foundation
+  - [Dragonfly](https://d7y.io/en-us/)
+- Uber
+  - [Kraken](https://eng.uber.com/introducing-kraken/)
 
 ### Base OS images
 
@@ -71,29 +94,6 @@ Pull an image: `docker image pull {image}`
 Building an image: `docker image build -t {registry}/{image}:{tag} -f {Dockerfile_path}`
 
 Push an image: `docker image push {image}`
-
-### Container image registries
-
-#### Client-server
-
-| Organization                      | Hosted                                | On-premises                                                                                   | Cloud                                                                            |
-| --------------------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Cloud Native Computing Foundation |                                       | [Harbor](https://goharbor.io/)                                                                |
-| Docker and SUSE                   |                                       | [Docker Registry](https://github.com/docker/distribution), [SUSE Portus](http://port.us.org/) |
-| Docker                            | [Docker Hub](https://hub.docker.com/) | [Docker Trusted Registry](https://docs.docker.com/ee/dtr/)                                    |
-| Red Hat                           | [Quay.io](https://quay.io/search)     | [Red Hat Quay](https://www.openshift.com/products/quay)                                       |
-| JFrog                             |                                       | [JFrog Artifactory](https://www.jfrog.com/confluence/display/RTF/Docker+Registry)             |
-| Sonatype                          |                                       | [Nexus Repository 3](https://help.sonatype.com/repomanager3/formats/docker-registry)          |
-| Amazon Web Services               |                                       |                                                                                               | [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/)           |
-| Microsoft Azure                   |                                       |                                                                                               | [Azure Registry](https://azure.microsoft.com/en-us/services/container-registry/) |
-| Google Cloud Platform             |                                       |                                                                                               | [Google Container Registry](https://cloud.google.com/container-registry/)        |
-
-#### P2P
-
-- Cloud Native Computing Foundation
-  - [Dragonfly](https://d7y.io/en-us/)
-- Uber
-  - [Kraken](https://eng.uber.com/introducing-kraken/)
 
 ## Container Runtime
 

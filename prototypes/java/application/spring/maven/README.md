@@ -13,9 +13,13 @@
   - File scanner
 - Configuration Management
   - Secret Management
+  - Dynamic Configuration
 - Service to service authentication in Microservices
 - Encryption of Data-at-rest
 - Logging
-- [Distributed Tracing](./distributed-tracing.md)
 - Monitoring
+  - Spring Boot Actuator
+    - RestTemplate latencies
+- [Distributed Tracing](./distributed-tracing.md)
+  - Spring Cloud Sleuth
 - Containerization

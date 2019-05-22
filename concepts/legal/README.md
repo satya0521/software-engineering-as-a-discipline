@@ -8,7 +8,10 @@ There are three kinds of software:
 - Open Source
 - Proprietary
 
-Must read: [Free Software, Free Society: Selected Essays of Richard M. Stallman](https://www.gnu.org/philosophy/fsfs/rms-essays.pdf)
+Must read:
+
+- [Free Software, Free Society: Selected Essays of Richard M. Stallman](https://www.gnu.org/philosophy/fsfs/rms-essays.pdf)
+- <https://opensource.dev/>
 
 ## Choose a license for project
 

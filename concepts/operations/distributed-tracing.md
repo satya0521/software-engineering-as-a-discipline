@@ -1,4 +1,8 @@
-# Distributed Tracing in a Spring Application
+# Tracing
+
+Tracing, aka distributed tracing, provides insight into the full lifecycles, aka traces, of requests to the system, allowing you to pinpoint failures and performance issues.
+
+## Distributed Tracing in a Spring Application
 
 Spring Cloud Sleuth implements a distributed tracing solution for Spring Cloud.
 

@@ -1,5 +1,7 @@
 # Logging in a Spring Application
 
+Logging provides insight into application-specific messages emitted by processes.
+
 ## Logging Infrastructure Architecture
 
 | Product | Collector                  | Aggregator             | Indexer        | Storage | Frontend           |

@@ -16,7 +16,9 @@ Two critical pieces for Operations team are logging and monitoring.
 | Health checks       | Spring Boot Actuator (Micrometer)           | No agent is required as Prometheus is pull-based                             | Prometheus and Alertmanager           |
 | Metrics             | Spring Boot Actuator (Micrometer)           | No agent is required as Prometheus is pull-based                             | Prometheus and Alertmanager           |
 
-Instrumentation is the way in which metrics are captured. Thermometer (instrument) captures temperature (metric).
+Instrumentation is the way in which metrics are captured.
+Thermometer (instrument) captures temperature (measurement - metrics).
+Notebook (instrument) captures notes (measurement - logs)
 
 ## Telemetry
 

@@ -9,7 +9,7 @@ Two critical pieces for Operations team are logging and monitoring.
 - API testing helps to identify deeper issues rather than just health check. Upstream service could be healthy but might have broken API contracts.
   These could be found out if the API tests are run periodically.
 
-| Concern             | Observability                               | Telemetry                                                                    | Monitoring                            |
+| Observability       | Instrumentation                             | Telemetry                                                                    | Monitoring                            |
 | ------------------- | ------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------- |
 | Logging             | Java Util Logging, Log4J2, Logback          | Fluentd Bit, Logstash Beats, Splunk Universal Forwarder, SumoLogic Collector | EFK, ELK, Splunk, SumoLogic           |
 | Distributed Tracing | Spring Cloud Sleuth and Spring Cloud Zipkin | No agent required for Zipkin; Jaeger Client for Jaeger                       | Jaeger (with Zipkin exporter enabled) |

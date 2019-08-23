@@ -29,9 +29,13 @@ Sources:
 
 Roles:
 
-- Product Manager: What to build? Specializations include Engineering, Marketing
-  - Program Manager ~ Technical Product Manager
-- [Project Manager](https://www.pmi.org/): How to build? Budget, timelines and objectives of the project
+- Business
+    - Product Manager: What to build? Specializations include Engineering, Marketing
+- Planning
+    - [Project Manager](https://www.pmi.org/): How to build? Budget, timelines and objectives of the program (spans multiple projects)
+    - Program Manager
+- Technology
+    - Technical Product Manager
 
 ## Tools
 
@@ -42,13 +46,13 @@ Sources:
 Tools:
 
 - Issue Management
-  - Atlassian JIRA
-  - Atlassian Trello
-  - GitHub Issues
-  - GitLab Issue Board
-  - Microsoft TFS / VSTS
-  - Jetbrains YouTrack
-  - Asana
-  - Pivotal Tracker
+    - Atlassian JIRA
+    - Atlassian Trello
+    - GitHub Issues
+    - GitLab Issue Board
+    - Microsoft TFS / VSTS
+    - Jetbrains YouTrack
+    - Asana
+    - Pivotal Tracker
 - Portfolio Management
-  - CA Rally Software
+    - CA Rally Software
